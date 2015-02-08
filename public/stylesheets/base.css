@@ -1,0 +1,22 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #FCFAF8;
+  color: #444;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; }
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
+
+p {
+  font-family: 'Libre Baskerville', serif;
+  line-height: 1.6em;
+  font-size: 1.2em;
+  margin-bottom: 1.2em;
+}
+
