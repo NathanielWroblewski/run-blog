@@ -113,4 +113,14 @@
   Trackman.Tooltip.listenTo('rect', tooltipTemplate)
 
   Trackman.Map.render(29.671642,-98.082013,'0001',16)
+
+  var lineChart = new Trackman.Charts.LineChart({
+    el:      '#pace',
+    data:    [{x: 1, y: 1}, {x: 2, y: 3}, {x: 3, y: 6}, {x: 4, y: 2}],
+    height:  200 - margin.top - margin.bottom,
+    width: 650 - margin.left - margin.right,
+    margins: margin
+  })
+
+  lineChart.render()
 }()

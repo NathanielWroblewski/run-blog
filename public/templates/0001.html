@@ -29,6 +29,8 @@
   discovered that I was pulling down 11 minute miles.  That's not even running
   by most standards.  That's jogging.
 </p>
+<div id="pace">
+</div>
 <p>
   As a runner, you'll read a lot of books that talk about perfect form, but
   despite my best efforts, I seem to be embracing the imperfect form, something
@@ -58,18 +60,18 @@
   }
 
   .axis path {
-      fill: none;
-      stroke: #aaa;
-      shape-rendering: crispEdges;
+    fill: none;
+    stroke: #aaa;
+    shape-rendering: crispEdges;
   }
 
   .axis text {
-      fill: #444;
-      stroke: none;
-      stoke-width: 0;
-      font-family: sans-serif;
-      font-size: 11px;
-      -webkit-font-smoothing: antialiased;
+    fill: #444;
+    stroke: none;
+    stoke-width: 0;
+    font-family: sans-serif;
+    font-size: 11px;
+    -webkit-font-smoothing: antialiased;
   }
 
   rect {
@@ -100,5 +102,11 @@
     display: inline-block;
     margin-right: 10px;
     margin-left: 10px;
+  }
+
+  #pace path.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 3;
   }
 </style>
