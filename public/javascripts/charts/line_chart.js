@@ -6,6 +6,10 @@ Trackman.Charts.LineChart = function(config) {
   this.height  = config.height,
   this.width   = config.width,
   this.margins = config.margins,
+  this.xFormat = config.xFormat,
+  this.yFormat = config.yFormat,
+  this.xCount = config.xCount,
+  this.yCount = config.yCount,
 
   this.getSVG = function() {
     return(
@@ -22,10 +26,14 @@ Trackman.Charts.LineChart = function(config) {
   this.svg = this.getSVG(),
 
   this.childrenConfig = {
-    el:     this.svg,
-    width:  this.width,
-    height: this.height,
-    data:   this.data
+    el:      this.svg,
+    width:   this.width,
+    height:  this.height,
+    data:    this.data,
+    xFormat: this.xFormat,
+    yFormat: this.yFormat,
+    xCount:  this.xCount,
+    yCount:  this.yCount
   },
 
   this.x = new Trackman.Charts.Ingredients.LinearX(this.childrenConfig),

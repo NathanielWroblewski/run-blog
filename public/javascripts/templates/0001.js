@@ -1,5 +1,5 @@
 !function() {
-  var margin = {top: 20, right: 40, bottom: 30, left: 40}
+  var margin = {top: 20, right: 10, bottom: 30, left: 40}
       height = 200,
       width = 650
 
@@ -114,13 +114,28 @@
 
   Trackman.Map.render(29.671642,-98.082013,'0001',16)
 
-  var lineChart = new Trackman.Charts.LineChart({
-    el:      '#pace',
-    data:    [{x: 1, y: 1}, {x: 2, y: 3}, {x: 3, y: 6}, {x: 4, y: 2}],
-    height:  200 - margin.top - margin.bottom,
-    width: 650 - margin.left - margin.right,
-    margins: margin
-  })
+  var pace = new Trackman.Models.PaceConverter({id: '0001'})
 
-  lineChart.render()
+  pace.fetch(function() {
+    var lineChart = new Trackman.Charts.LineChart({
+      el:      '#pace',
+      data:    pace.getPaces().slice(16),
+      height:  150 - margin.top - margin.bottom,
+      width: 650 - margin.left - margin.right,
+      margins: margin,
+      yCount: 3,
+      yFormat: function(d) {
+        var min = Math.floor(d / 60),
+            sec = Math.floor(d % 60)
+
+        return d3.time.format('%M:%S')(new Date(2012, 0, 1, 0, min, sec))
+      }
+    })
+
+    lineChart.render()
+  })
 }()
+
+formatTime = d3.time.format("%H:%M"),
+    formatMinutes = function(d) { return formatTime(new Date(2012, 0, 1, 0, d)); };
+

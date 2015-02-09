@@ -5,6 +5,8 @@ Trackman.Charts.Ingredients.LinearX = function(config) {
   this.width = config.width,
   this.data = config.data,
   this.el = config.el,
+  this.xFormat = config.xFormat,
+  this.xCount = config.xCount,
 
   this.getScale = function() {
     return (
@@ -16,6 +18,7 @@ Trackman.Charts.Ingredients.LinearX = function(config) {
 
   this.getAxis = function() {
     return d3.svg.axis().scale(this.getScale()).orient('bottom')
+      .tickFormat(this.xFormat).ticks(this.xCount)
   },
 
   this.render = function(label) {
