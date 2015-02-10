@@ -119,7 +119,7 @@
   pace.fetch(function() {
     var lineChart = new Trackman.Charts.LineChart({
       el:      '#pace',
-      data:    pace.getPaces().slice(16),
+      data:    pace.getPaces().slice(16, pace.getPaces().length - 10),
       height:  150 - margin.top - margin.bottom,
       width: 650 - margin.left - margin.right,
       margins: {top: 20, right: 10, bottom: 30, left: 40},

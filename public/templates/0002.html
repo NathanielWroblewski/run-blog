@@ -1,4 +1,4 @@
-<h2>MARKED IMPROVEMENT</h2>
+<h2>TRACKED RUNS ARE FASTER RUNS</h2>
 <p class="grey">
   <span class="timestamp">Friday, February 7th, 2015</span>
   <span class="location">New Braunfels, TX</span>
@@ -16,63 +16,30 @@
   The success was accompanied by a daunting realization.  This is going to be
   much harder than I expected.  I ran hard, pushing myself through periods I
   really wanted to rest.  I was able to finish 5 miles at that pace, but 26?
-<p class="title">SPLITS OVER FIRST 5 MILES</p>
+</p>
+
+<p class="title">PACE IMPROVEMENT</p>
 <div class="legend">
   <span>
-    <div class="swatch goal"></div>GOAL
-    <div class="swatch current"></div>CURRENT
+    <div class="swatch first"></div>FIRST RUN
+    <div class="swatch current"></div>SECOND RUN
   </span>
 </div>
-<svg height="200" width="600">
-</svg>
+<div id="improvement">
+</div>
 
 <style>
-  .axis line {
-    display: none;
-  }
-
-  .axis path {
-      fill: none;
-      stroke: #aaa;
-      shape-rendering: crispEdges;
-  }
-
-  .axis text {
-      fill: #444;
-      stroke: none;
-      stoke-width: 0;
-      font-family: sans-serif;
-      font-size: 11px;
-      -webkit-font-smoothing: antialiased;
-  }
-
-  rect {
-    stroke: #aaa;
-    stroke-width: 1px;
-    shape-rendering: crispEdges;
-    fill: steelblue;
-  }
-
   .current {
     fill: steelblue;
     background-color: steelblue;
   }
 
-  .goal {
+  .first {
     fill: #444;
     background-color: #444;
   }
 
-  .legend {
-    font-family: sans-serif;
-    font-size: 0.7em;
-  }
-
-  .swatch {
-    height: 10px;
-    width: 10px;
-    display: inline-block;
-    margin-right: 10px;
-    margin-left: 10px;
+  .first-run path.line {
+    stroke: #444;
   }
 </style>

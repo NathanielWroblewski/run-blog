@@ -2,7 +2,7 @@ namespace('Trackman.Models')
 
 Trackman.Models.PaceConverter = function(config) {
   this.id = config.id,
-  this.PACE_URL = '//trackman.s3.amazonaws.com/' + this.id + '.json',
+  this.PACE_URL = '//trackman.s3.amazonaws.com/geojson/' + this.id + '.json',
 
   this.fetch = function(callback) {
     this._initialize()
