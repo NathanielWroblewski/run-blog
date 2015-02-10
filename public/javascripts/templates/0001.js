@@ -1,5 +1,5 @@
 !function() {
-  var margin = {top: 20, right: 10, bottom: 30, left: 40}
+  var margin = {top: 20, right: 40, bottom: 30, left: 40}
       height = 200,
       width = 650
 
@@ -10,7 +10,7 @@
       }
 
   var x0 = d3.scale.ordinal()
-    .rangeRoundBands([0, width - margin.right], .5);
+    .rangeRoundBands([0, width - margin.right - margin.left], .5);
 
   var x1 = d3.scale.ordinal();
 
@@ -50,7 +50,7 @@
       .attr('transform', 'translate(0,' + height + ')')
       .call(xAxis)
     .append('text')
-      .attr('x', width - margin.right)
+      .attr('x', width - margin.right - margin.left - 5)
       .attr('y', '10')
       .style('text-anchor', 'end')
       .text('Mile');
@@ -122,7 +122,7 @@
       data:    pace.getPaces().slice(16),
       height:  150 - margin.top - margin.bottom,
       width: 650 - margin.left - margin.right,
-      margins: margin,
+      margins: {top: 20, right: 10, bottom: 30, left: 40},
       pointRadius: 3,
       yCount: 3,
       yFormat: function(d) {
@@ -135,7 +135,7 @@
 
     lineChart.render()
 
-    Trackman.Tooltip.listenTo('.point', function(datum) {
+    Trackman.Tooltip.listenTo('#pace .point', function(datum) {
       var data = datum.dataset,
           time = moment.utc(Number(data.y) * 1000).format('mm:ss'),
           mile = Number(data.x).toFixed(2)
@@ -147,9 +147,32 @@
         '</p>'
       )
     })
+
+    var elevationChart = new Trackman.Charts.LineChart({
+      el:      '#elevation',
+      data:    pace.getElevations(),
+      height:  100 - margin.top - margin.bottom,
+      width: 650 - margin.left - margin.right,
+      margins: margin,
+      pointRadius: 3,
+      yCount: 3,
+      yFormat: function(d) { return d }
+    })
+
+    elevationChart.render()
+
+    Trackman.Tooltip.listenTo('#elevation .point', function(datum) {
+      var data = datum.dataset,
+          elevation = Number(data.y).toFixed(2),
+          mile = Number(data.x).toFixed(2)
+
+      return (
+        '<p style="color: #444; font-size: 1em;">' +
+          '<strong>Distance: </strong>' + mile + ' miles<br/>' +
+          '<strong>Elevation: </strong>' + elevation + ' min/mi' +
+        '</p>'
+      )
+    })
   })
 }()
-
-formatTime = d3.time.format("%H:%M"),
-    formatMinutes = function(d) { return formatTime(new Date(2012, 0, 1, 0, d)); };
 

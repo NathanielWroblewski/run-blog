@@ -24,7 +24,13 @@ Trackman.Models.PaceConverter = function(config) {
     return this.state.paces.map(function(pace, index) {
       return { x: this.state.totalDistance[index], y: pace }
     }, this)
-  }
+  },
+
+  this.getElevations = function() {
+    return this.state.elevations.map(function(elevation, index) {
+      return { x: this.state.totalDistance[index], y: elevation }
+    }, this)
+  },
 
   // private
 
@@ -36,6 +42,7 @@ Trackman.Models.PaceConverter = function(config) {
     this.state.paces         = []
     this.state.distances     = []
     this.state.totalDistance = []
+    this.state.averagePace = 0
   },
 
   this._parse = function(response) {
@@ -60,6 +67,7 @@ Trackman.Models.PaceConverter = function(config) {
 
     this.state.totalDistance = this._calculateTotalDistance()
     this.state.paces = this._calculatePace()
+    this.state.averagePace = this._calculateAveragePace()
   },
 
   this._calculateTotalDistance = function() {
@@ -78,5 +86,13 @@ Trackman.Models.PaceConverter = function(config) {
 
       return moment.duration(elapsedTime).asSeconds() / distance
     }, this)
+  },
+
+  this._calculateAveragePace = function() {
+    var sum = this.state.paces.reduce(function(prev, current) {
+      return prev + current
+    })
+
+    return sum / this.state.paces.length
   }
 }
