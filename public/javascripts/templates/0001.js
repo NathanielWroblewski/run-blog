@@ -123,6 +123,7 @@
       height:  150 - margin.top - margin.bottom,
       width: 650 - margin.left - margin.right,
       margins: margin,
+      pointRadius: 3,
       yCount: 3,
       yFormat: function(d) {
         var min = Math.floor(d / 60),
@@ -133,6 +134,19 @@
     })
 
     lineChart.render()
+
+    Trackman.Tooltip.listenTo('.point', function(datum) {
+      var data = datum.dataset,
+          time = moment.utc(Number(data.y) * 1000).format('mm:ss'),
+          mile = Number(data.x).toFixed(2)
+
+      return (
+        '<p style="color: #444; font-size: 1em;">' +
+          '<strong>Distance: </strong>' + mile + ' miles<br/>' +
+          '<strong>Pace: </strong>' + time + ' min/mi' +
+        '</p>'
+      )
+    })
   })
 }()
 

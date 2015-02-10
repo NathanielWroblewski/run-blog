@@ -10,6 +10,7 @@ Trackman.Charts.LineChart = function(config) {
   this.yFormat = config.yFormat,
   this.xCount = config.xCount,
   this.yCount = config.yCount,
+  this.radius = config.pointRadius,
 
   this.getSVG = function() {
     return(
@@ -44,11 +45,20 @@ Trackman.Charts.LineChart = function(config) {
     data:   this.data,
     xscale: this.x.getScale(),
     yscale: this.y.getScale()
-  })
+  }),
+
+  this.points = new Trackman.Charts.Ingredients.Points({
+    el: this.svg,
+    data: this.data,
+    xscale: this.x.getScale(),
+    yscale: this.y.getScale(),
+    radius: this.radius
+  }),
 
   this.render = function(attrs) {
     this.x.render()
     this.y.render()
     this.line.render()
+    this.points.render()
   }
 }
