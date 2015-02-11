@@ -22,13 +22,13 @@ Trackman.Models.PaceConverter = function(config) {
 
   this.getPaces = function() {
     return this.state.paces.map(function(pace, index) {
-      return { x: this.state.totalDistance[index], y: pace }
+      return { x: this.state.totalDistance[index] || 0, y: pace || 0}
     }, this)
   },
 
   this.getElevations = function() {
     return this.state.elevations.map(function(elevation, index) {
-      return { x: this.state.totalDistance[index], y: elevation }
+      return { x: this.state.totalDistance[index] || 0, y: elevation || 0 }
     }, this)
   },
 

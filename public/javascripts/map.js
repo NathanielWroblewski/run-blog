@@ -1,13 +1,8 @@
 namespace('Trackman')
 
 Trackman.Map = {
-  render: function(latitude, longitude, id, zoom) {
-    google.maps.event.addDomListener(window, 'load', function() {
-      this._initialize(latitude, longitude, id, zoom)
-    }.bind(this))
-  },
 
-  _initialize: function(latitude, longitude, id, zoom) {
+  render: function(latitude, longitude, id, zoom) {
     var location = new google.maps.LatLng(latitude, longitude)
       , mapOptions = { zoom: zoom, center: location }
       , map = new google.maps.Map(document.getElementById('map'), mapOptions)
