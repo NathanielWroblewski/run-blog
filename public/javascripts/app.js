@@ -5,8 +5,8 @@
   Trackman.currentPost = Trackman.latestPost,
 
   Trackman.App = function() {
-    var TEMPLATE_PATH = '/run-blog/public/templates/',
-        JS_PATH = '/run-blog/public/javascripts/templates/'
+    var TEMPLATE_PATH = '/public/templates/',
+        JS_PATH = '/public/javascripts/templates/'
 
     this.el = document.getElementById('content'),
 
