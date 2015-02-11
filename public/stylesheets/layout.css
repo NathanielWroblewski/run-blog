@@ -19,6 +19,16 @@ img {
   font-family: 'Montserrat', sans-serif;
 }
 
+.caption {
+  color: #aaa;
+  font-size: 1em;
+  text-align: center;
+  font-style: italic;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: block;
+}
+
 .container {
   width: 650px;
   margin: 0 auto;

@@ -1,10 +1,10 @@
 !function() {
   namespace('Trackman')
 
-  Trackman.latestPost = 2,
-  Trackman.currentPost = 2
+  Trackman.latestPost = 3,
+  Trackman.currentPost = Trackman.latestPost,
 
-  function App() {
+  Trackman.App = function() {
     var TEMPLATE_PATH = '/public/templates/',
         JS_PATH = '/public/javascripts/templates/'
 
@@ -54,7 +54,7 @@
     }
   }
 
-  Trackman.app = new App()
+  Trackman.app = new Trackman.App()
   Trackman.app.fetch(Trackman.latestPost)
 
   // navigation

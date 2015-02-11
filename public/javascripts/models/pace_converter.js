@@ -26,6 +26,15 @@ Trackman.Models.PaceConverter = function(config) {
     }, this)
   },
 
+  this.getSpeeds = function() {
+    return this.state.totalDistance.map(function(distance, index) {
+      return {
+        x: distance || 0,
+        y: (distance || 0) / (this.state.secondsElapsed[index] / 60 / 60 || 1)
+      }
+    }, this)
+  },
+
   this.getElevations = function() {
     return this.state.elevations.map(function(elevation, index) {
       return { x: this.state.totalDistance[index] || 0, y: elevation || 0 }
@@ -36,12 +45,13 @@ Trackman.Models.PaceConverter = function(config) {
 
   this._initialize = function() {
     this.state = {}
-    this.state.coordinates   = []
-    this.state.elevations    = []
-    this.state.times         = []
-    this.state.paces         = []
-    this.state.distances     = []
-    this.state.totalDistance = []
+    this.state.coordinates    = []
+    this.state.elevations     = []
+    this.state.times          = []
+    this.state.secondsElapsed = []
+    this.state.distances      = []
+    this.state.totalDistance  = []
+    this.state.paces          = []
     this.state.averagePace = 0
   },
 
@@ -82,9 +92,12 @@ Trackman.Models.PaceConverter = function(config) {
 
     return this.state.totalDistance.map(function(distance, index) {
       var currentTime = moment(this.state.times[index + 1]),
-          elapsedTime = currentTime.subtract(startTime)
+          elapsedTime = currentTime.subtract(startTime),
+          secondsElapsed = moment.duration(elapsedTime).asSeconds()
 
-      return moment.duration(elapsedTime).asSeconds() / distance
+      this.state.secondsElapsed.push(secondsElapsed)
+
+      return secondsElapsed / distance
     }, this)
   },
 
