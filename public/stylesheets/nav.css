@@ -1,0 +1,44 @@
+nav {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  width: 650px;
+}
+
+nav li {
+  font-family: 'Montserrat', sans-serif;
+  display: inline-block;
+  font-weight: bold;
+  margin-left: 46px;
+  margin-right: 46px;
+}
+
+nav p {
+  margin-top: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+nav a {
+  color: #aaa;
+}
+
+nav a:hover {
+  color: #444;
+}
+
+nav .inactive {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+nav .inactive:hover {
+  cursor: not-allowed;
+  opacity: 0.5;
+  color: #aaa;
+}
