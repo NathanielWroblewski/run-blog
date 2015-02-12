@@ -14,6 +14,7 @@ Trackman.Charts.MultiAxisMultiLineChart = function(config) {
   this.series = config.series,
   this.xAxisLabel = config.xAxisLabel,
   this.yAxisLabel = config.yAxisLabel,
+  this.xAxisLabelPosition = config.xAxisLabelPosition,
 
   this.getSVG = function() {
     return(
@@ -40,6 +41,7 @@ Trackman.Charts.MultiAxisMultiLineChart = function(config) {
     data:    this.combineData(),
     xFormat: this.xFormat,
     xCount:  this.xCount,
+    xAxisLabelPosition: this.xAxisLabelPosition
   },
 
   this.x = new Trackman.Charts.Ingredients.LinearX(this.childrenConfig),

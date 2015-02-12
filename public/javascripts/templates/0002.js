@@ -21,7 +21,9 @@
               sec = Math.floor(d % 60)
 
           return d3.time.format('%M:%S')(new Date(2012, 0, 1, 0, min, sec))
-       }
+       },
+       xAxisLabel: 'Miles',
+       xAxisLabelPosition: '-5'
       })
 
       improvementChart.render()
@@ -47,7 +49,9 @@
         margins: margin,
         pointRadius: 3,
         yCount: 3,
-        yFormat: function(d) { return d }
+        yFormat: function(d) { return d },
+        xAxisLabel: 'Miles',
+        xAxisLabelPosition: '-5'
       })
 
       elevationChart.render()

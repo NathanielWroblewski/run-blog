@@ -7,6 +7,7 @@ Trackman.Charts.Ingredients.LinearX = function(config) {
   this.el = config.el,
   this.xFormat = config.xFormat,
   this.xCount = config.xCount,
+  this.labelPosition = config.xAxisLabelPosition,
 
   this.getScale = function() {
     return (
@@ -28,7 +29,7 @@ Trackman.Charts.Ingredients.LinearX = function(config) {
         .call(this.getAxis())
       .append('text')
         .attr('x', this.width)
-        .attr('y', '10')
+        .attr('y', this.labelPosition || '10')
         .style('text-anchor', 'end')
         .text(label)
   }

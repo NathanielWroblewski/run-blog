@@ -13,6 +13,7 @@ Trackman.Charts.LineChart = function(config) {
   this.radius = config.pointRadius,
   this.xAxisLabel = config.xAxisLabel,
   this.yAxisLabel = config.yAxisLabel,
+  this.xAxisLabelPosition = config.xAxisLabelPosition,
 
   this.getSVG = function() {
     return(
@@ -36,7 +37,8 @@ Trackman.Charts.LineChart = function(config) {
     xFormat: this.xFormat,
     yFormat: this.yFormat,
     xCount:  this.xCount,
-    yCount:  this.yCount
+    yCount:  this.yCount,
+    xAxisLabelPosition: this.xAxisLabelPosition
   },
 
   this.x = new Trackman.Charts.Ingredients.LinearX(this.childrenConfig),

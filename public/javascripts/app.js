@@ -55,7 +55,15 @@
   }
 
   Trackman.app = new Trackman.App()
-  Trackman.app.fetch(Trackman.latestPost)
+
+  // navigate to post base on id in the url, i.e. /#0001
+  var postId = parseInt(window.location.hash.replace('#', ''))
+  if (!isNaN(postId) && postId > 0 && postId < Trackman.latestPost) {
+    Trackman.currentPost = postId
+    Trackman.app.fetch(Trackman.currentPost)
+  } else {
+    Trackman.app.fetch(Trackman.latestPost)
+  }
 
   // navigation
   d3.select('nav .nav-first').on('click', function() {
