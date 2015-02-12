@@ -78,6 +78,14 @@ nav p {
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
+nav a {
+  color: #aaa;
+}
+
+nav a:hover {
+  color: #444;
+}
+
 .timestamp { color: #aaa; }
 
 .location { float: right; }

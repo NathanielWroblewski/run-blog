@@ -130,7 +130,9 @@
             sec = Math.floor(d % 60)
 
         return d3.time.format('%M:%S')(new Date(2012, 0, 1, 0, min, sec))
-      }
+      },
+      xAxisLabel: 'Miles',
+      yAxisLabel: 'Pace'
     })
 
     lineChart.render()
@@ -156,7 +158,8 @@
       margins: margin,
       pointRadius: 3,
       yCount: 3,
-      yFormat: function(d) { return d }
+      yFormat: function(d) { return d },
+      yAxisLabel: 'Feet'
     })
 
     elevationChart.render()
@@ -169,7 +172,7 @@
       return (
         '<p style="color: #444; font-size: 1em;">' +
           '<strong>Distance: </strong>' + mile + ' miles<br/>' +
-          '<strong>Elevation: </strong>' + elevation + ' min/mi' +
+          '<strong>Elevation: </strong>' + elevation + ' ft' +
         '</p>'
       )
     })

@@ -12,6 +12,8 @@ Trackman.Charts.MultiLineChart = function(config) {
   this.yCount = config.yCount,
   this.radius = config.pointRadius,
   this.series = config.series,
+  this.xAxisLabel = config.xAxisLabel,
+  this.yAxisLabel = config.yAxisLabel,
 
   this.getSVG = function() {
     return(
@@ -46,8 +48,8 @@ Trackman.Charts.MultiLineChart = function(config) {
   this.y = new Trackman.Charts.Ingredients.LinearY(this.childrenConfig),
 
   this.render = function(attrs) {
-    this.x.render()
-    this.y.render()
+    this.x.render(this.xAxisLabel)
+    this.y.render(this.yAxisLabel)
     this.data.forEach(function(dataset, index){
       var line = new Trackman.Charts.Ingredients.Line({
         el:     this.svg.append('g').attr('class', this.series[index] + ' lines'),

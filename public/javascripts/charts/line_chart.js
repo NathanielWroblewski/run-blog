@@ -11,6 +11,8 @@ Trackman.Charts.LineChart = function(config) {
   this.xCount = config.xCount,
   this.yCount = config.yCount,
   this.radius = config.pointRadius,
+  this.xAxisLabel = config.xAxisLabel,
+  this.yAxisLabel = config.yAxisLabel,
 
   this.getSVG = function() {
     return(
@@ -56,8 +58,8 @@ Trackman.Charts.LineChart = function(config) {
   }),
 
   this.render = function(attrs) {
-    this.x.render()
-    this.y.render()
+    this.x.render(this.xAxisLabel)
+    this.y.render(this.yAxisLabel)
     this.line.render()
     this.points.render()
   }

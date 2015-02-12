@@ -38,6 +38,32 @@
           '</p>'
         )
       })
+
+      var elevationChart = new Trackman.Charts.LineChart({
+        el:      '#elevation',
+        data:    secondPace.getElevations(),
+        height:  100 - margin.top - margin.bottom,
+        width: 650 - margin.left - margin.right,
+        margins: margin,
+        pointRadius: 3,
+        yCount: 3,
+        yFormat: function(d) { return d }
+      })
+
+      elevationChart.render()
+
+      Trackman.Tooltip.listenTo('#elevation .point', function(datum) {
+        var data = datum.dataset,
+            elevation = Number(data.y).toFixed(2),
+            mile = Number(data.x).toFixed(2)
+
+        return (
+          '<p style="color: #444; font-size: 1em;">' +
+            '<strong>Distance: </strong>' + mile + ' miles<br/>' +
+            '<strong>Elevation: </strong>' + elevation + ' ft' +
+          '</p>'
+        )
+      })
     })
   })
 }()

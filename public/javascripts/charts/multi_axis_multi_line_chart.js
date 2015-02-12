@@ -12,6 +12,8 @@ Trackman.Charts.MultiAxisMultiLineChart = function(config) {
   this.yCount = config.yCount,
   this.radius = config.pointRadius,
   this.series = config.series,
+  this.xAxisLabel = config.xAxisLabel,
+  this.yAxisLabel = config.yAxisLabel,
 
   this.getSVG = function() {
     return(
@@ -43,7 +45,7 @@ Trackman.Charts.MultiAxisMultiLineChart = function(config) {
   this.x = new Trackman.Charts.Ingredients.LinearX(this.childrenConfig),
 
   this.render = function(attrs) {
-    this.x.render()
+    this.x.render(this.xAxisLabel)
     this.data.forEach(function(dataset, index){
       var yAxis = new Trackman.Charts.Ingredients.LinearY({
         width:   this.width,
@@ -70,7 +72,7 @@ Trackman.Charts.MultiAxisMultiLineChart = function(config) {
         radius: this.radius
       })
 
-      yAxis.render()
+      yAxis.render(this.yAxisLabel)
       line.render()
       points.render()
     }, this)

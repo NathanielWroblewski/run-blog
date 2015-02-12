@@ -57,7 +57,8 @@ Trackman.Models.PaceConverter = function(config) {
 
   this._parse = function(response) {
     var coordinates = response.geometry.coordinates,
-        times = response.properties.coordTimes
+        length = coordinates.length,
+        times = response.properties.coordTimes,
         previousCoord = null
 
     coordinates.forEach(function(datum, index) {
@@ -68,7 +69,7 @@ Trackman.Models.PaceConverter = function(config) {
           haversine = Trackman.Utils.haversine
 
       this.state.coordinates.push(latlong)
-      this.state.elevations.push(elevation)
+      if (index < length - 1) this.state.elevations.push(elevation)
       this.state.times.push(times[index])
       if (index) this.state.distances.push(haversine(previousCoord, latlong))
 

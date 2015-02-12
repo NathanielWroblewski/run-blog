@@ -58,14 +58,14 @@
   Trackman.app.fetch(Trackman.latestPost)
 
   // navigation
-  d3.select('nav .first').on('click', function() {
+  d3.select('nav .nav-first').on('click', function() {
     d3.event.preventDefault()
     Trackman.currentPost = 1
     window.location = '#' + Trackman.app._stringify(Trackman.currentPost)
     Trackman.app.fetch(Trackman.currentPost)
   })
 
-  d3.select('nav .back').on('click', function() {
+  d3.select('nav .nav-back').on('click', function() {
     d3.event.preventDefault()
     if (Trackman.currentPost - 1 >= 1) {
       Trackman.currentPost -= 1
@@ -74,7 +74,7 @@
     }
   })
 
-  d3.select('nav .next').on('click', function() {
+  d3.select('nav .nav-next').on('click', function() {
     d3.event.preventDefault()
     if (Trackman.currentPost + 1 <= Trackman.latestPost) {
       Trackman.currentPost += 1
@@ -83,7 +83,7 @@
     }
   })
 
-  d3.select('nav .last').on('click', function() {
+  d3.select('nav .nav-last').on('click', function() {
     d3.event.preventDefault()
     Trackman.currentPost = Trackman.latestPost
     window.location = '#' + Trackman.app._stringify(Trackman.currentPost)
