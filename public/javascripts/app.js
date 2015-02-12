@@ -1,8 +1,7 @@
 !function() {
   namespace('Trackman')
 
-  Trackman.latestPost = 4,
-  Trackman.currentPost = Trackman.latestPost,
+  Trackman.latestPost = 4
 
   Trackman.App = function() {
     var TEMPLATE_PATH = '/public/templates/',
@@ -61,8 +60,17 @@
     },
 
     this._setActiveNavigation = function() {
+      d3.selectAll('nav a').attr('class', '')
 
-    },
+      if (Trackman.currentPost === Trackman.latestPost) {
+        d3.select('#nav-next').attr('class', 'inactive')
+        d3.select('#nav-last').attr('class', 'inactive')
+      }
+      if (Trackman.currentPost === 1) {
+        d3.select('#nav-first').attr('class', 'inactive')
+        d3.select('#nav-back').attr('class', 'inactive')
+      }
+    }
   }
 
   Trackman.app = new Trackman.App()
@@ -70,31 +78,30 @@
   // navigate to post base on id in the url, i.e. /#0001
   var postId = parseInt(window.location.hash.replace('#', ''))
   if (!isNaN(postId) && postId > 0 && postId < Trackman.latestPost) {
-    Trackman.currentPost = postId
-    Trackman.app.fetch(Trackman.currentPost)
+    Trackman.app.navigate(postId)
   } else {
-    Trackman.app.fetch(Trackman.latestPost)
+    Trackman.app.navigate(Trackman.latestPost)
   }
 
-  // navigation
-  d3.select('nav .nav-first').on('click', function() {
+  // site navigation via the << < > >> arrows
+  d3.select('#nav-first').on('click', function() {
     d3.event.preventDefault()
     if (Trackman.currentPost > 1) Trackman.app.navigate(1)
   })
 
-  d3.select('nav .nav-back').on('click', function() {
+  d3.select('#nav-back').on('click', function() {
     d3.event.preventDefault()
     if (Trackman.currentPost > 1) Trackman.app.navigate(Trackman.currentPost - 1)
   })
 
-  d3.select('nav .nav-next').on('click', function() {
+  d3.select('#nav-next').on('click', function() {
     d3.event.preventDefault()
     if (Trackman.currentPost < Trackman.latestPost) {
       Trackman.app.navigate(Trackman.currentPost + 1)
     }
   })
 
-  d3.select('nav .nav-last').on('click', function() {
+  d3.select('#nav-last').on('click', function() {
     d3.event.preventDefault()
     if (Trackman.currentPost < Trackman.latestPost) {
       Trackman.app.navigate(Trackman.latestPost)
