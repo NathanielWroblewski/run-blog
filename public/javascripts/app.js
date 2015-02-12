@@ -39,6 +39,13 @@
       return this
     },
 
+    this.navigate = function(id) {
+      Trackman.currentPost = id
+      window.location = '#' + this._stringify(Trackman.currentPost)
+      this.fetch(Trackman.currentPost)
+      this._setActiveNavigation()
+    },
+
     this._stringify = function(id){
       return this._zeropad(id, 4)
     },
@@ -51,7 +58,11 @@
       } else {
         return new Array(width - number.length + 1).join('0') + number
       }
-    }
+    },
+
+    this._setActiveNavigation = function() {
+
+    },
   }
 
   Trackman.app = new Trackman.App()
@@ -68,33 +79,25 @@
   // navigation
   d3.select('nav .nav-first').on('click', function() {
     d3.event.preventDefault()
-    Trackman.currentPost = 1
-    window.location = '#' + Trackman.app._stringify(Trackman.currentPost)
-    Trackman.app.fetch(Trackman.currentPost)
+    if (Trackman.currentPost > 1) Trackman.app.navigate(1)
   })
 
   d3.select('nav .nav-back').on('click', function() {
     d3.event.preventDefault()
-    if (Trackman.currentPost - 1 >= 1) {
-      Trackman.currentPost -= 1
-      window.location = '#' + Trackman.app._stringify(Trackman.currentPost)
-      Trackman.app.fetch(Trackman.currentPost)
-    }
+    if (Trackman.currentPost > 1) Trackman.app.navigate(Trackman.currentPost - 1)
   })
 
   d3.select('nav .nav-next').on('click', function() {
     d3.event.preventDefault()
-    if (Trackman.currentPost + 1 <= Trackman.latestPost) {
-      Trackman.currentPost += 1
-      window.location = '#' + Trackman.app._stringify(Trackman.currentPost)
-      Trackman.app.fetch(Trackman.currentPost)
+    if (Trackman.currentPost < Trackman.latestPost) {
+      Trackman.app.navigate(Trackman.currentPost + 1)
     }
   })
 
   d3.select('nav .nav-last').on('click', function() {
     d3.event.preventDefault()
-    Trackman.currentPost = Trackman.latestPost
-    window.location = '#' + Trackman.app._stringify(Trackman.currentPost)
-    Trackman.app.fetch(Trackman.currentPost)
+    if (Trackman.currentPost < Trackman.latestPost) {
+      Trackman.app.navigate(Trackman.latestPost)
+    }
   })
 }()
