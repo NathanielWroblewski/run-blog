@@ -27,6 +27,7 @@ rect {
 .legend {
   font-family: sans-serif;
   font-size: 0.7em;
+  margin-top: 0.8em;
 }
 
 .swatch {
