@@ -1,7 +1,7 @@
 !function() {
   namespace('Trackman')
 
-  Trackman.latestPost = 3,
+  Trackman.latestPost = 4,
   Trackman.currentPost = Trackman.latestPost,
 
   Trackman.App = function() {
