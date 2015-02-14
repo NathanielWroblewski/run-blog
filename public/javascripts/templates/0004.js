@@ -1,6 +1,69 @@
 !function() {
   Trackman.Map.render(29.668204179033637,-98.10488177463412,'0004',15,true)
 
+  var tcx = new Trackman.Models.TCXConverter({id: '0004'})
+  tcx.fetch(function() {
+    var margin = {top: 20, right: 10, bottom: 30, left: 40}
+
+    var heartRateChart = new Trackman.Charts.LineChart({
+      el:      '#heart-rate',
+      data:    tcx.getHeartRates().slice(20),
+      height:  100 - margin.top - margin.bottom,
+      width:   650 - margin.left - margin.right,
+      margins: margin,
+      pointRadius: 3,
+      yCount: 3,
+      yFormat: function(d) { return d },
+      xAxisLabel: 'Miles',
+      xAxisLabelPosition: '-5',
+      yAxisLabel: 'bpm'
+    })
+
+    heartRateChart.render()
+
+    Trackman.Tooltip.listenTo('#heart-rate .point', function(datum) {
+      var data = datum.dataset,
+          heartRate = Number(data.y),
+          mile = Number(data.x).toFixed(2)
+
+      return (
+        '<p style="color: #444; font-size: 1em;">' +
+          '<strong>Distance: </strong>' + mile + ' miles<br/>' +
+          '<strong>Heart Rate: </strong>' + heartRate + ' bpm' +
+        '</p>'
+      )
+    })
+
+    var cadenceChart = new Trackman.Charts.LineChart({
+      el:      '#cadence',
+      data:    tcx.getCadence().slice(10),
+      height:  200 - margin.top - margin.bottom,
+      width:   650 - margin.left - margin.right,
+      margins: margin,
+      pointRadius: 3,
+      yCount: 3,
+      yFormat: function(d) { return d },
+      xAxisLabel: 'Miles',
+      xAxisLabelPosition: '-5',
+      yAxisLabel: 'spm'
+    })
+
+    cadenceChart.render()
+
+    Trackman.Tooltip.listenTo('#cadence .point', function(datum) {
+      var data = datum.dataset,
+          heartRate = Number(data.y),
+          mile = Number(data.x).toFixed(2)
+
+      return (
+        '<p style="color: #444; font-size: 1em;">' +
+          '<strong>Distance: </strong>' + mile + ' miles<br/>' +
+          '<strong>Cadence: </strong>' + heartRate + ' steps/min' +
+        '</p>'
+      )
+    })
+  })
+
   var run = new Trackman.Models.PaceConverter({id: '0004'})
   run.fetch(function() {
     var margin = {top: 20, right: 10, bottom: 30, left: 40}

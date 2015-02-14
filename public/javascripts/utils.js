@@ -44,6 +44,12 @@ Trackman.Utils = {
     return (radius * Math.acos(d)) * 0.000621371 // miles in a meter;
   },
 
+  /**
+   * get() sends an ajax request
+   *
+   * @params <String> url
+   * @params <Function> callback
+   */
   get: function(url, callback) {
     var request = new XMLHttpRequest();
 
@@ -56,5 +62,18 @@ Trackman.Utils = {
     }
 
     request.send();
+  },
+
+  /**
+   * uniq() returns an array of unique values
+   *
+   * @params <Array> array
+   * @return <Array>
+   */
+  uniq: function(array) {
+    return array.reduce(function(previous, current) {
+      if (previous.indexOf(current) < 0) previous.push(current)
+      return previous
+    }, [])
   }
 }
