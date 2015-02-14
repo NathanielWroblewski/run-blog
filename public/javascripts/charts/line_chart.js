@@ -59,10 +59,21 @@ Trackman.Charts.LineChart = function(config) {
     radius: this.radius
   }),
 
+  this.animate = function() {
+    var totalLength = this.el.select('.line')[0][0].getTotalLength()
+
+    this.el.select('.line')
+      .attr('stroke-dasharray', totalLength + ' ' + totalLength)
+      .attr('stroke-dashoffset', totalLength)
+      .transition().duration(4000).ease('linear')
+      .attr('stroke-dashoffset', 0);
+  },
+
   this.render = function(attrs) {
     this.x.render(this.xAxisLabel)
     this.y.render(this.yAxisLabel)
     this.line.render()
     this.points.render()
+    this.animate()
   }
 }
