@@ -8,15 +8,15 @@
     var heartRateChart = new Trackman.Charts.LineChart({
       el:      '#heart-rate',
       data:    tcx.getHeartRates().slice(20),
-      height:  100 - margin.top - margin.bottom,
+      height:  200 - margin.top - margin.bottom,
       width:   650 - margin.left - margin.right,
       margins: margin,
       pointRadius: 3,
-      yCount: 3,
       yFormat: function(d) { return d },
       xAxisLabel: 'Miles',
       xAxisLabelPosition: '-5',
-      yAxisLabel: 'bpm'
+      yAxisLabel: 'bpm',
+      yCount: 5
     })
 
     heartRateChart.render()
@@ -41,7 +41,7 @@
       width:   650 - margin.left - margin.right,
       margins: margin,
       pointRadius: 3,
-      yCount: 3,
+      yCount: 5,
       yFormat: function(d) { return d },
       xAxisLabel: 'Miles',
       xAxisLabelPosition: '-5',
@@ -52,13 +52,13 @@
 
     Trackman.Tooltip.listenTo('#cadence .point', function(datum) {
       var data = datum.dataset,
-          heartRate = Number(data.y),
+          cadence = Number(data.y),
           mile = Number(data.x).toFixed(2)
 
       return (
         '<p style="color: #444; font-size: 1em;">' +
           '<strong>Distance: </strong>' + mile + ' miles<br/>' +
-          '<strong>Cadence: </strong>' + heartRate + ' steps/min' +
+          '<strong>Cadence: </strong>' + cadence + ' steps/min' +
         '</p>'
       )
     })
