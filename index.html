@@ -25,6 +25,16 @@
   <link rel="apple-touch-icon-precomposed" href="/public/images/favicon-152.png">
   <link rel="icon" sizes="192x192" href="/public/images/favicon-192.png">
   <link rel="icon" sizes="152x152" href="/public/images/favicon-152.png">
+
+  <!-- FACEBOOK -->
+  <meta property="og:title" content="Running Blog" />
+  <meta property="og:site_name" content="TRACKMAN" />
+  <meta property="og:url" content="http://trackman.io" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="http://trackman.io/images/og-image.png" />
+  <meta property="fb:app_id" content="" />
+
 </head>
 <body>
   <div class="container">
@@ -73,4 +83,23 @@
 <script src="/public/javascripts/charts/multi_line_chart.js"></script>
 <script src="/public/javascripts/charts/multi_axis_multi_line_chart.js"></script>
 <script src="/public/javascripts/app.js"></script>
+
+<!-- FACEBOOK -->
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId:   '335172773336478',
+      xfbml:   true,
+      version: 'v2.2'
+    })
+  }
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id
+     js.src = '//connect.facebook.net/en_US/sdk.js'
+     fjs.parentNode.insertBefore(js, fjs)
+   }(document, 'script', 'facebook-jssdk'))
+</script>
 </html>
